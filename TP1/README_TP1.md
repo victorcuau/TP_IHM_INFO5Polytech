@@ -1,5 +1,5 @@
 # TP1_IHM2_Polytech
-## BADAT Leya, WICKLAND Damien, CUAU Victor
+## BADAT Leya, WYKLAND Damien, CUAU Victor
 ## TP1 IHM Avancée - INFO5 Polytech - 2019-2020
 
 Le but de ce premier TP est d'implémenter un Range Slider. Le sujet détaillé est disponible sur ce dépot Git. 

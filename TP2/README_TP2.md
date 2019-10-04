@@ -1,5 +1,5 @@
 # TP2_IHM2_Polytech
-## BADAT Leya, WICKLAND Damien, CUAU Victor
+## BADAT Leya, WYKLAND Damien, CUAU Victor
 ## TP2 IHM Avancée - INFO5 Polytech - 2019-2020
 
 But du TP : 
