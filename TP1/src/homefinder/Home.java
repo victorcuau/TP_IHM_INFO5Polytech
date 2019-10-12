@@ -1,5 +1,7 @@
 package homefinder;
 
+import java.util.Random;
+
 public class Home {
 	
 	public int nbRooms;
@@ -15,10 +17,11 @@ public class Home {
 	}
 	
 	public Home() {
-		this.nbRooms = (int)Math.random() * 10;
-		this.price = ((int)Math.random() * 300000 + 10000)%100;
-		this.posX = (int)Math.random() * 100;
-		this.posY = (int)Math.random() * 100;
+		Random randomGenerator = new Random();
+		this.nbRooms = randomGenerator.nextInt(10) + 1;
+		this.price = randomGenerator.nextInt(500000) + 1000;
+		this.posX = randomGenerator.nextInt(100) + 1;
+		this.posY = randomGenerator.nextInt(100) + 1;
 	}
 
 }

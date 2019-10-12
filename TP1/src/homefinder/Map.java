@@ -18,13 +18,17 @@ public class Map extends JPanel {
 
 	public int					minPrice;
 	public int					maxPrice;
+	public int					minRoom;
+	public int					maxRoom;
 
-	public Map(int width, int height, int minPrice, int maxPrice) {
+	public Map(int width, int height, int minPrice, int maxPrice, int minRoom, int maxRoom) {
 		this.createHomeList(NB_HOME);
 		this.width = width;
 		this.height = height;
 		this.minPrice = minPrice;
 		this.maxPrice = maxPrice;
+		this.minRoom = minRoom;
+		this.maxRoom = maxRoom;
 		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(width, height));
 	}
@@ -33,9 +37,13 @@ public class Map extends JPanel {
 		for (int i = 0; i < nbHome; i++) {
 			Home h = new Home();
 			homeList.add(h);
-			System.out.println('X' + h.posX + 'Y' + h.posY + '€' + h.price + '#' + h.nbRooms);
+//			System.out.println("X" + h.posX);
+//			System.out.println("Y" + h.posY);
+//			System.out.println("€" + h.price);
+//			System.out.println("#" + h.nbRooms);
+//			System.out.println(" ");
 		}
-		System.out.println(homeList.size());
+		System.out.println(homeList.size() + " homes created on the map.");
 	}
 
 	public void paint(Graphics g) {
