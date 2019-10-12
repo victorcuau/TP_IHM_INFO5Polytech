@@ -114,10 +114,8 @@ public class demo {
 
 		
 	// Creation of the Map
-//		Map map = new Map(containerWest.getWidth()-10, containerWest.getHeight() - 10, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_MIN_ROOM, DEFAULT_MAX_ROOM);
-//		containerWest.add(map, BorderLayout.CENTER);
-		
-		
+		Map map = new Map(containerWest.getWidth()-10, containerWest.getHeight() - 10, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_MIN_ROOM, DEFAULT_MAX_ROOM);
+		containerWest.add(map, BorderLayout.CENTER);
 		
 		
 	// Display the elements in the windows
@@ -125,24 +123,20 @@ public class demo {
 		windows.setVisible(true);
 		
 		
-		JFrame windows2 = new JFrame();
-		windows2.setTitle("Test map");
-		windows2.setSize(1200, 800);
-		windows2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		windows2.setResizable(true);
-		windows2.setLocationRelativeTo(null);
-		
-		JPanel container2 = new JPanel();
-		Map map = new Map(container2.getWidth()-10, container2.getHeight() - 10, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_MIN_ROOM, DEFAULT_MAX_ROOM);
-		container2.add(map);
-		
-		windows2.setContentPane(container2);
-		windows2.setVisible(true);
+//		JFrame windows2 = new JFrame();
+//		windows2.setTitle("Test map");
+//		windows2.setSize(1200, 800);
+//		windows2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		windows2.setResizable(true);
+//		windows2.setLocationRelativeTo(null);
+//		
+//		JPanel container2 = new JPanel();
+//		Map map = new Map(container2.getWidth()-10, container2.getHeight() - 10, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_MIN_ROOM, DEFAULT_MAX_ROOM);
+//		container2.add(map);
+//		
+//		windows2.setContentPane(container2);
+//		windows2.setVisible(true);
 
-		
-		
-		
-		
 	}
 
 }

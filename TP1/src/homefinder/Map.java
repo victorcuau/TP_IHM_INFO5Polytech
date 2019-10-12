@@ -52,15 +52,19 @@ public class Map extends JPanel {
 		for (int i = 0; i < this.homeList.size(); i++) {
 			Home currentHome = homeList.get(i);
 			if (currentHome.price >= this.minPrice && currentHome.price <= this.maxPrice) {
-				g.setColor(Color.RED);
-				g.fillOval(currentHome.posX, currentHome.posY, DIAMETER, DIAMETER);
+				if (currentHome.nbRooms >= this.minRoom && currentHome.nbRooms <= this.maxRoom) {
+					g.setColor(Color.RED);
+					g.fillOval(currentHome.posX, currentHome.posY, DIAMETER, DIAMETER);
+				}
 			}
 		}
 	}
 	
-	public void changeDisplay(int minPrice, int maxPrice) {
+	public void changeDisplay(int minPrice, int maxPrice, int minRoom, int maxRoom) {
 		this.minPrice = minPrice;
 		this.maxPrice = maxPrice;
+		this.minRoom = minRoom;
+		this.maxRoom = maxRoom;
 		this.removeAll();
 		this.repaint();
 	}
