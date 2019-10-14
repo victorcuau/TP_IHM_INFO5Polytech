@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -80,6 +81,11 @@ public class demo {
 		roomLabelsContainer.add(labelRoom1);
 		roomLabelsContainer.add(priceLabelSeparator);
 		roomLabelsContainer.add(labelRoom2);
+		
+	// Add the image of the map to the background
+		ImageIcon mapImage = new ImageIcon("images/test.png");
+    JLabel image = new JLabel(mapImage);
+    container.add(image);
 
 	// Creation of the Map
 		Map map = new Map(windows.getWidth() - 200, windows.getHeight() - 25, MIN_PRICE, MAX_PRICE, MIN_ROOM, MAX_ROOM, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_MIN_ROOM, DEFAULT_MAX_ROOM);

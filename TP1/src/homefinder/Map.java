@@ -29,7 +29,8 @@ public class Map extends JPanel {
 		this.maxPrice = defaultMaxPrice;
 		this.minRoom = defaultMinRoom;
 		this.maxRoom = defaultMaxRoom;
-		this.setBackground(Color.WHITE);
+//		this.setBackground(Color.WHITE);
+		this.setOpaque(false);  // Problem here
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
