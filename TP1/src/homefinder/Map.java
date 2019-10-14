@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class Map extends JPanel {
 
-	static final int		NB_HOME		= 200;
+	static final int		NB_HOME		= 500;
 	static final int		DIAMETER	= 5;
 
 	public Vector<Home>	homeList	= new Vector<Home>();
@@ -21,21 +21,21 @@ public class Map extends JPanel {
 	public int					minRoom;
 	public int					maxRoom;
 
-	public Map(int width, int height, int minPrice, int maxPrice, int minRoom, int maxRoom) {
-		this.createHomeList(NB_HOME, minPrice, maxPrice, minRoom, maxRoom);
+	public Map(int width, int height, int minPrice, int maxPrice, int minRoom, int maxRoom, int defaultMinPrice, int defaultMaxPrice, int defaultMinRoom, int defaultMaxRoom) {
+		this.createHomeList(NB_HOME, width, height, minPrice, maxPrice, minRoom, maxRoom);
 		this.width = width;
 		this.height = height;
-		this.minPrice = minPrice;
-		this.maxPrice = maxPrice;
-		this.minRoom = minRoom;
-		this.maxRoom = maxRoom;
+		this.minPrice = defaultMinPrice;
+		this.maxPrice = defaultMaxPrice;
+		this.minRoom = defaultMinRoom;
+		this.maxRoom = defaultMaxRoom;
 		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
-	public void createHomeList(int nbHome, int minPrice, int maxPrice, int minRoom, int maxRoom) {
+	public void createHomeList(int nbHome, int xMax, int yMax, int minPrice, int maxPrice, int minRoom, int maxRoom) {
 		for (int i = 0; i < nbHome; i++) {
-			Home h = new Home(minRoom, maxRoom, minPrice, maxPrice);
+			Home h = new Home(xMax, yMax, minRoom, maxRoom, minPrice, maxPrice);
 			homeList.add(h);
 //			System.out.println("X" + h.posX);
 //			System.out.println("Y" + h.posY);

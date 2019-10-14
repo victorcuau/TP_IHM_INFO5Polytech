@@ -16,20 +16,20 @@ public class Home {
 //		this.posY = posY;
 //	}
 
-	public Home() {
-		Random randomGenerator = new Random();
-		this.nbRooms = randomGenerator.nextInt(10) + 1;
-		this.price = randomGenerator.nextInt(500000) + 1000;
-		this.posX = randomGenerator.nextInt(100) + 1;
-		this.posY = randomGenerator.nextInt(100) + 1;
-	}
+//	public Home() {
+//		Random randomGenerator = new Random();
+//		this.nbRooms = randomGenerator.nextInt(10) + 1;
+//		this.price = randomGenerator.nextInt(500000) + 1000;
+//		this.posX = randomGenerator.nextInt(100) + 1;
+//		this.posY = randomGenerator.nextInt(100) + 1;
+//	}
 
-	public Home(int minRoom, int maxRoom, int minPrice, int maxPrice) {
+	public Home(int xMax, int yMax, int minRoom, int maxRoom, int minPrice, int maxPrice) {
 		Random randomGenerator = new Random();
 		this.nbRooms = randomGenerator.nextInt(maxRoom) + minRoom;
 		this.price = randomGenerator.nextInt(maxPrice) + minPrice;
-		this.posX = randomGenerator.nextInt(500) + 1;
-		this.posY = randomGenerator.nextInt(500) + 1;
+		this.posX = randomGenerator.nextInt(xMax) + 1;
+		this.posY = randomGenerator.nextInt(yMax) + 1;
 	}
 
 }
