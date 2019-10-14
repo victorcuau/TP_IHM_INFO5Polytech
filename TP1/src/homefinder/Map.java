@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class Map extends JPanel {
 
-	static final int		NB_HOME		= 20;
+	static final int		NB_HOME		= 200;
 	static final int		DIAMETER	= 5;
 
 	public Vector<Home>	homeList	= new Vector<Home>();
@@ -22,7 +22,7 @@ public class Map extends JPanel {
 	public int					maxRoom;
 
 	public Map(int width, int height, int minPrice, int maxPrice, int minRoom, int maxRoom) {
-		this.createHomeList(NB_HOME);
+		this.createHomeList(NB_HOME, minPrice, maxPrice, minRoom, maxRoom);
 		this.width = width;
 		this.height = height;
 		this.minPrice = minPrice;
@@ -33,9 +33,9 @@ public class Map extends JPanel {
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
-	public void createHomeList(int nbHome) {
+	public void createHomeList(int nbHome, int minPrice, int maxPrice, int minRoom, int maxRoom) {
 		for (int i = 0; i < nbHome; i++) {
-			Home h = new Home();
+			Home h = new Home(minRoom, maxRoom, minPrice, maxPrice);
 			homeList.add(h);
 //			System.out.println("X" + h.posX);
 //			System.out.println("Y" + h.posY);
