@@ -3,6 +3,9 @@ package homefinder;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Polygon;
+import java.awt.Toolkit;
 import java.util.Vector;
 
 import javax.swing.JPanel;
@@ -10,7 +13,7 @@ import javax.swing.JPanel;
 public class Map extends JPanel {
 
 	static final int		NB_HOME		= 500;
-	static final int		DIAMETER	= 5;
+	static final int		DIAMETER	= 10;
 
 	public Vector<Home>	homeList	= new Vector<Home>();
 	public int					width;
@@ -30,7 +33,7 @@ public class Map extends JPanel {
 		this.minRoom = defaultMinRoom;
 		this.maxRoom = defaultMaxRoom;
 //		this.setBackground(Color.WHITE);
-		this.setOpaque(false);  // Problem here
+		this.setOpaque(false);
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
@@ -49,13 +52,16 @@ public class Map extends JPanel {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-
 		for (int i = 0; i < this.homeList.size(); i++) {
 			Home currentHome = homeList.get(i);
 			if (currentHome.price >= this.minPrice && currentHome.price <= this.maxPrice) {
 				if (currentHome.nbRooms >= this.minRoom && currentHome.nbRooms <= this.maxRoom) {
+					g.setColor(new Color(19, 163, 237));
+					g.fillRect(currentHome.posX, currentHome.posY, DIAMETER, DIAMETER);
+					Polygon triangle = new Polygon(new int[] { currentHome.posX, currentHome.posX + DIAMETER, (int)((currentHome.posX + DIAMETER/2)) }, 
+																				 new int[] { currentHome.posY, currentHome.posY, currentHome.posY - DIAMETER/2 }, 3);
 					g.setColor(Color.RED);
-					g.fillOval(currentHome.posX, currentHome.posY, DIAMETER, DIAMETER);
+					g.fillPolygon(triangle);
 				}
 			}
 		}
@@ -69,5 +75,11 @@ public class Map extends JPanel {
 		this.removeAll();
 		this.repaint();
 	}
+	
+//	public void paintComponent(Graphics g) {
+////		Image mapImage = new Image("images/test.png");
+//		Image background = Toolkit.getDefaultToolkit().createImage("images/test.png");
+//		g.drawImage(background, 0, 0, this);
+//	}
 
 }
