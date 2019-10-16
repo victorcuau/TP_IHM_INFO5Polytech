@@ -3,11 +3,15 @@ package homefinder;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Polygon;
-import java.awt.Toolkit;
+import java.awt.RenderingHints;
+import java.io.File;
+import java.io.IOException;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Map extends JPanel {
@@ -23,6 +27,8 @@ public class Map extends JPanel {
 	public int					maxPrice;
 	public int					minRoom;
 	public int					maxRoom;
+	
+	private Image backgroundImage;
 
 	public Map(int width, int height, int minPrice, int maxPrice, int minRoom, int maxRoom, int defaultMinPrice, int defaultMaxPrice, int defaultMinRoom, int defaultMaxRoom) {
 		this.createHomeList(NB_HOME, width, height, minPrice, maxPrice, minRoom, maxRoom);
@@ -76,10 +82,27 @@ public class Map extends JPanel {
 		this.repaint();
 	}
 	
-//	public void paintComponent(Graphics g) {
-////		Image mapImage = new Image("images/test.png");
-//		Image background = Toolkit.getDefaultToolkit().createImage("images/test.png");
-//		g.drawImage(background, 0, 0, this);
-//	}
+	public void setImage(Image image) {
+    this.backgroundImage = image;
+    repaint();
+	}
+	
+	public void setImage(String path) throws IOException {
+    try {
+        this.backgroundImage = ImageIO.read(new File(path));
+        repaint();
+    } 
+    catch (IOException e) {
+        throw new IOException(path+" introuvable", e);
+    }
+	}
+	
+	public void paintComponent(Graphics g){
+    if(backgroundImage!=null){
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+    }
+	}
 
 }

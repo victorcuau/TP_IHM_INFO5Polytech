@@ -1,8 +1,8 @@
 import java.awt.BorderLayout;
+import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,9 +40,6 @@ public class demo {
 		JPanel containerEast = new JPanel();
 		containerEast.setLayout(new BoxLayout(containerEast, BoxLayout.PAGE_AXIS));
 		container.add(containerEast, BorderLayout.EAST);
-//	JPanel containerWest = new JPanel();
-//	containerWest.setLayout(new BorderLayout());
-//	container.add(containerWest, BorderLayout.WEST);
 
 	// Creation of the Price RangeSlider
 		RangeSlider rangeSliderPrice = new RangeSlider(MIN_PRICE, MAX_PRICE);
@@ -81,15 +78,14 @@ public class demo {
 		roomLabelsContainer.add(labelRoom1);
 		roomLabelsContainer.add(priceLabelSeparator);
 		roomLabelsContainer.add(labelRoom2);
-		
-	// Add the image of the map to the background
-		ImageIcon mapImage = new ImageIcon("images/test.png");
-    JLabel image = new JLabel(mapImage);
-    container.add(image);
 
 	// Creation of the Map
 		Map map = new Map(windows.getWidth() - 200, windows.getHeight() - 25, MIN_PRICE, MAX_PRICE, MIN_ROOM, MAX_ROOM, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_MIN_ROOM, DEFAULT_MAX_ROOM);
-//		containerWest.add(map, BorderLayout.CENTER);
+		try {
+			map.setImage("images/map.png");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		container.add(map);
 
 	// Listener to update data
@@ -97,7 +93,7 @@ public class demo {
 		rangeSliderRoom.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				RangeSlider sliderRoom = (RangeSlider) e.getSource();
-				// Update the text of the labels 
+				// Update the text of the labels
 				labelRoom1.setText(String.valueOf(sliderRoom.getFirstBound()));
 				labelRoom2.setText(String.valueOf(sliderRoom.getSecondBound()));
 				// Update the map
