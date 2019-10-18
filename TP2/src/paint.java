@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
@@ -69,6 +70,17 @@ class Paint extends JFrame {
 					shapes.add(shape = path);
 				}
 				path.lineTo(e.getX(), e.getY());
+				panel.repaint();
+			}
+		},
+		new Tool("Line") {
+			public void mouseDragged(MouseEvent e) {
+				Line2D.Double line = (Line2D.Double)shape;
+				if(line == null) {
+					line = new Line2D.Double(o.getX(), o.getY(), 0, 0);
+					shapes.add(shape = line);
+				}
+				line.setLine(e.getX(), e.getY(), o.getX(), o.getY());
 				panel.repaint();
 			}
 		},
