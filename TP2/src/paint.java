@@ -18,7 +18,7 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.RenderingHints;
-
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
@@ -60,7 +60,7 @@ class Paint extends JFrame {
 	}
 	
 	Tool tools[] = {
-		new Tool("pen") {
+		new Tool("Pencil") {
 			public void mouseDragged(MouseEvent e) {
 				Path2D.Double path = (Path2D.Double)shape;
 				if(path == null) {
@@ -72,7 +72,7 @@ class Paint extends JFrame {
 				panel.repaint();
 			}
 		},
-		new Tool("rect") {
+		new Tool("Rectangle") {
 			public void mouseDragged(MouseEvent e) {
 				Rectangle2D.Double rect = (Rectangle2D.Double)shape;
 				if(rect == null) {
@@ -80,6 +80,18 @@ class Paint extends JFrame {
 					shapes.add(shape = rect);
 				}
 				rect.setRect(min(e.getX(), o.getX()), min(e.getY(), o.getY()),
+				             abs(e.getX()- o.getX()), abs(e.getY()- o.getY()));
+				panel.repaint();
+			}
+		},
+		new Tool("Ellipse") {
+			public void mouseDragged(MouseEvent e) {
+				Ellipse2D.Double oval = (Ellipse2D.Double)shape;
+				if(oval == null) {
+					oval = new Ellipse2D.Double(o.getX(), o.getY(), 0, 0);
+					shapes.add(shape = oval);
+				}
+				oval.setFrame(min(e.getX(), o.getX()), min(e.getY(), o.getY()),
 				             abs(e.getX()- o.getX()), abs(e.getY()- o.getY()));
 				panel.repaint();
 			}
