@@ -37,6 +37,7 @@ import javax.swing.SwingUtilities;
 
 class Paint extends JFrame {
 	Vector<Shape> shapes = new Vector<Shape>();
+	Color current_color = Color.BLACK;
 
 	class Tool extends AbstractAction
 	           implements MouseInputListener {
