@@ -154,7 +154,7 @@ class Paint extends JFrame {
       });
       add(colorBox);
 		}}, BorderLayout.NORTH);
-		add(panel = new JPanel() {	
+		add(panel = new JPanel() {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);	
 				Graphics2D g2 = (Graphics2D)g;
@@ -167,8 +167,8 @@ class Paint extends JFrame {
 				int ind_color = 0;
 				g2.setColor(Color.BLACK);
 				for(Shape shape: shapes) {
-					g2.draw(shape);
 					g2.setColor(shapes_colors.get(ind_color));
+					g2.draw(shape);
 					ind_color++;
 				}
 			}
