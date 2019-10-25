@@ -29,6 +29,8 @@ import javax.swing.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
@@ -39,11 +41,14 @@ class Paint extends JFrame {
 	Vector<Shape> shapes = new Vector<Shape>();
 	Color current_color = Color.BLACK;
 
-	class Tool extends AbstractAction
-	           implements MouseInputListener {
-	   Point o;
+	class Tool extends AbstractAction implements MouseInputListener {
+	  Point o;
 		Shape shape;
-		public Tool(String name) { super(name); }
+		
+		public Tool(String name) {
+			super(name);
+		}
+		
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("using tool " + this);
 			panel.removeMouseListener(tool);
@@ -52,12 +57,23 @@ class Paint extends JFrame {
 			panel.addMouseListener(tool);
 			panel.addMouseMotionListener(tool);
 		}
+		
 		public void mouseClicked(MouseEvent e) {}
+		
 		public void mouseEntered(MouseEvent e) {}
+		
 		public void mouseExited(MouseEvent e) {}
-		public void mousePressed(MouseEvent e) { o = e.getPoint(); }
-		public void mouseReleased(MouseEvent e) { shape = null; }
+		
+		public void mousePressed(MouseEvent e) {
+			o = e.getPoint();
+		}
+		
+		public void mouseReleased(MouseEvent e) {
+			shape = null;
+		}
+		
 		public void mouseDragged(MouseEvent e) {}
+		
 		public void mouseMoved(MouseEvent e) {}
 	}
 	
@@ -110,18 +126,28 @@ class Paint extends JFrame {
 			}
 		}
 	};
+	
 	Tool tool;
-
 	JPanel panel;
 	
 	public Paint(String title) {
 		super(title);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(800, 600));
+		setMinimumSize(new Dimension(1200, 800));
 		add(new JToolBar() {{
 			for(AbstractAction tool: tools) {
 				add(tool);
 			}
+			JButton colorBox = new JButton("Color");
+			colorBox.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	current_color = JColorChooser.showDialog( Paint.this, "Pick a new color", current_color);
+           if ( current_color == null )
+          	 current_color = Color.BLACK;
+        }
+      });
+      add(colorBox);
 		}}, BorderLayout.NORTH);
 		add(panel = new JPanel() {	
 			public void paintComponent(Graphics g) {
@@ -147,11 +173,11 @@ class Paint extends JFrame {
 
 /* main *********************************************************************/
 
-	public static void main(String argv[]) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				Paint paint = new Paint("paint");
-			}
-		});
-	}
+//	public static void main(String argv[]) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				Paint paint = new Paint("paint");
+//			}
+//		});
+//	}
 }
