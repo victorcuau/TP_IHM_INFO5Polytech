@@ -40,6 +40,7 @@ import javax.swing.SwingUtilities;
 class Paint extends JFrame {
 	Vector<Shape> shapes = new Vector<Shape>();
 	Color current_color = Color.BLACK;
+	Vector<Color> shapes_colors = new Vector<Color>();
 
 	class Tool extends AbstractAction implements MouseInputListener {
 	  Point o;
@@ -85,6 +86,7 @@ class Paint extends JFrame {
 					path = new Path2D.Double();
 					path.moveTo(o.getX(), o.getY());
 					shapes.add(shape = path);
+					shapes_colors.add(current_color);
 				}
 				path.lineTo(e.getX(), e.getY());
 				panel.repaint();
@@ -96,6 +98,7 @@ class Paint extends JFrame {
 				if(line == null) {
 					line = new Line2D.Double(o.getX(), o.getY(), 0, 0);
 					shapes.add(shape = line);
+					shapes_colors.add(current_color);
 				}
 				line.setLine(e.getX(), e.getY(), o.getX(), o.getY());
 				panel.repaint();
@@ -107,6 +110,7 @@ class Paint extends JFrame {
 				if(rect == null) {
 					rect = new Rectangle2D.Double(o.getX(), o.getY(), 0, 0);
 					shapes.add(shape = rect);
+					shapes_colors.add(current_color);
 				}
 				rect.setRect(min(e.getX(), o.getX()), min(e.getY(), o.getY()),
 				             abs(e.getX()- o.getX()), abs(e.getY()- o.getY()));
@@ -119,6 +123,7 @@ class Paint extends JFrame {
 				if(oval == null) {
 					oval = new Ellipse2D.Double(o.getX(), o.getY(), 0, 0);
 					shapes.add(shape = oval);
+					shapes_colors.add(current_color);
 				}
 				oval.setFrame(min(e.getX(), o.getX()), min(e.getY(), o.getY()),
 				             abs(e.getX()- o.getX()), abs(e.getY()- o.getY()));
@@ -140,11 +145,11 @@ class Paint extends JFrame {
 			}
 			JButton colorBox = new JButton("Color");
 			colorBox.addActionListener(new ActionListener() {
-        @Override
         public void actionPerformed(ActionEvent e) {
-        	current_color = JColorChooser.showDialog( Paint.this, "Pick a new color", current_color);
-           if ( current_color == null )
-          	 current_color = Color.BLACK;
+        	current_color = JColorChooser.showDialog( Paint.this, "Color box", current_color);
+          if ( current_color == null ) {
+          	current_color = Color.BLACK;
+          }
         }
       });
       add(colorBox);
@@ -159,9 +164,12 @@ class Paint extends JFrame {
 				g2.setColor(Color.WHITE);
 				g2.fillRect(0, 0, getWidth(), getHeight());
 				
+				int ind_color = 0;
 				g2.setColor(Color.BLACK);
 				for(Shape shape: shapes) {
 					g2.draw(shape);
+					g2.setColor(shapes_colors.get(ind_color));
+					ind_color++;
 				}
 			}
 		});
