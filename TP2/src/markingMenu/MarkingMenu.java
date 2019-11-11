@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
+import demo.Paint;
 
 /**
  * 
@@ -101,11 +102,18 @@ public class MarkingMenu implements MouseInputListener {
 		if (distanceToCenter > radius) {
 			return 0;
 		} else {
-			double angle = Math.toDegrees(
-					Math.atan2(p.y - p.y, p.x - (p.x + radius)) - Math.atan2(p.y - y, p.x - x));
+			double angle = Math.toDegrees(Math.atan2(p.y - p.y, p.x - (p.x + radius)) - Math.atan2(p.y - y, p.x - x));
 			int area = (int) ((angle * items.length) / 360) + 1;
 			return area;
 		}
+	}
+	
+	public void setColor(Color c) {
+		((Paint) this.parent).setColor(c);
+	}
+	
+	public void setTool(int t) {
+		((Paint) this.parent).setTool(t);
 	}
 	
 	//Draw the marking menu based on the items of the menu we are in

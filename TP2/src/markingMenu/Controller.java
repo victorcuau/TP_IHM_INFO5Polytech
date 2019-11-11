@@ -48,6 +48,7 @@ public class Controller {
 		this.actualMenu = 0;
 		this.lastZone = 0;
 		this.color = Color.BLACK; //default color
+		this.tool = 1;
 	}
 	
 	
@@ -67,18 +68,40 @@ public class Controller {
 	
 	//Action based on a right click pressed (not released)
 	public void rightClickPressed(Point p) {
-		if(actualMenu == 0) {
+		switch(actualMenu) {
+		case 0:
 			vue.setPoint(p);
 			actualMenu = 1;
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
 		}
+			
 	}
 	
 	//Action based on the release of the right click
+	//We touch at the application only when we are DONE using the marking menu,
+	//and not at each movement
 	public void rightClickReleased(Point p) {
-		if(actualMenu == 1) {
+		switch(actualMenu) {
+		case 0:
+			break;
+		case 1:
 			actualMenu = 0;
+			break;
+		case 2:
+			vue.setColor(color);
+			actualMenu = 0;
+			break;
+		case 3:
+			vue.setTool(tool);
+			actualMenu = 0;
+			break;
 		}
-		actualMenu = 0;
 	}
 	
 	//Action based on the drag of the mouse while the right click is still pressed
@@ -109,62 +132,43 @@ public class Controller {
 			break;
 		case 2:
 			//color menu
-			if(zone == 0) {
-				switch(lastZone) {
-				case 1:
-					
-					break;
-				case 2:
-					
-					break;
-				case 3:
-					
-					break;
-				case 4:
-					
-					break;
-				case 5:
-					//we go back to the base menu
-					vue.setPoint(e);
-					actualMenu = 1;
-					break;
-				case 6:
-					
-					break;
-					
-				}
+			if(zone == 0 && lastZone == 5) {
+				//we go back to the base menu
+				vue.setPoint(e);
+				actualMenu = 1;
 			}else {
 				lastZone = zone;
+				switch(zone) {
+				case 1:
+					color = Color.GREEN;
+					break;
+				case 2:
+					color = Color.BLUE;
+					break;
+				case 3:
+					color = Color.RED;
+					break;
+				case 4:
+					color = Color.YELLOW;
+					break;
+				case 5:
+					break;
+				case 6:
+					color = Color.BLACK;
+					break;
+				}
 			}
+			
 			break;
 		case 3:
 			//tool menu
-			if(zone == 0) {
-				switch(lastZone) {
-				case 1:
-					
-					break;
-				case 2:
-					//we go back to the base menu
-					vue.setPoint(e);
-					actualMenu = 1;
-					break;
-				case 3:
-					
-					break;
-				case 4:
-					
-					break;
-				case 5:
-					
-					break;
-				case 6:
-					
-					break;
-					
-				}
+			if(zone == 0 && lastZone == 2) {
+				//we go back to the base menu
+				vue.setPoint(e);
+				actualMenu = 1;
 			}else {
 				lastZone = zone;
+				tool = zone;
 			}
 			break;				
 		}

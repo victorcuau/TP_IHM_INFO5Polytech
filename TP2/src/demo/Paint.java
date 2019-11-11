@@ -38,7 +38,7 @@ import markingMenu.MarkingMenu;
 
 /* paint *******************************************************************/
 
-class Paint extends JFrame {
+public class Paint extends JFrame {
 
 	class Tool extends AbstractAction implements MouseInputListener {
 		
@@ -51,7 +51,6 @@ class Paint extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("using tool " + this);
 			panel.removeMouseListener(tool);
 			panel.removeMouseMotionListener(tool);
 			tool = this;
@@ -142,7 +141,7 @@ class Paint extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	Vector<Shape> shapes = new Vector<Shape>();
-	Color current_color = Color.BLACK;
+	Color current_color = Color.BLUE;
 	Vector<Color> shapes_colors = new Vector<Color>();
 	
 	//We create our Marking menu
@@ -150,6 +149,36 @@ class Paint extends JFrame {
 
 	Tool tool;
 	JPanel panel;
+	
+	//We set the Color based on the result of the marking menu
+	public void setColor(Color c) {
+		this.current_color = c;
+	}
+	
+	//We set the tool based on the result of the marking menu
+	public void setTool(int t) {
+		panel.removeMouseListener(tool);
+		panel.removeMouseMotionListener(tool);
+		switch(t) {
+		case 1:
+			tool = tools[0];
+			break;
+		case 3:
+			tool = tools[2];
+			break;
+		case 4:
+			tool = tools[1];
+			break;
+		case 5:
+			tool = tools[0];
+			break;
+		case 6:
+			tool = tools[3];
+			break;
+		}
+		panel.addMouseListener(tool);
+		panel.addMouseMotionListener(tool);
+	}
 
 	public Paint(String title) {
 		super(title);
