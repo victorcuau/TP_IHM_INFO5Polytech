@@ -134,7 +134,7 @@ public class Paint extends JFrame {
 	} };
 	
 	Vector<Shape> shapes = new Vector<Shape>();
-	Color current_color = Color.BLUE;
+	Color current_color = Color.BLACK;
 	Vector<Color> shapes_colors = new Vector<Color>();
 	
 	// We create our Marking menu
