@@ -15,41 +15,37 @@ import demo.Paint;
 /**
  * 
  * @author blow
- *	Vue of the Marking menu, use to get the input from the user, ask the controller what to do with them
+ *	Vue of the Marking menu, use to get the inputs from the user, ask the controller what to do with them
  *	and finally draw them on the application.
  */
 public class MarkingMenu implements MouseInputListener {
 	private Controller cont;
-	private Point p; 		//Center of the actual menu
-	int radius = 80; 		//Radius of the menu
-	JFrame parent;			//parent, so we can repaint
-	boolean dragging;		//boolean set to true when we are dragging with right click
+	private Point p; 		// Center of the actual menu
+	int radius = 80; 		// Radius of the menu
+	JFrame parent;			// parent, so we can repaint
+	boolean dragging;		// boolean set to True when we are dragging with right click
 	
 	public MarkingMenu(JFrame parent) {
 		this.cont = new Controller(this);
 		this.p = new Point();
-		this.parent = parent; 
+		this.parent = parent;
 		this.dragging = false;
 	}
 
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
 
-	//When we press a button on the mouse, we check if it is the right click, then we warn the controller
-	@Override
+	// When we press a button on the mouse, we check if it is the right click, then we warn the controller
 	public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isRightMouseButton(e)) {
 			cont.rightClickPressed(e.getPoint());
 			this.dragging = true;
 		}
 		parent.repaint();
-		
 	}
 
-	//when we release a button on the mouse
-	@Override
+	// When we release a button on the mouse
 	public void mouseReleased(MouseEvent e) {
 		if (SwingUtilities.isRightMouseButton(e)) {
 			cont.rightClickReleased(e.getPoint());
@@ -58,20 +54,15 @@ public class MarkingMenu implements MouseInputListener {
 		parent.repaint();
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
-	//If we are dragging the mouse with the right click still pressed, we warn the controller
-	@Override
+	// If we are dragging the mouse with the right click still pressed, we warn the controller
 	public void mouseDragged(MouseEvent e) {
 		if(this.dragging) {
 			cont.mouseDragged(e.getPoint());
@@ -79,10 +70,8 @@ public class MarkingMenu implements MouseInputListener {
 		parent.repaint();
 	}
 
-	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	// set and get the center of the actual menu
@@ -94,8 +83,8 @@ public class MarkingMenu implements MouseInputListener {
 		return this.p;
 	}
 	
-	// Calculate the zone of the cursor in the menu we are in right now.
-	// returns 0 if we are out, or the index of the menu. (1, 2, etc)
+	// Calculate in which zone in the menu the cursor is right now
+	// Return 0 if we are out the menu, else return the index of the menu (1, 2, etc)
 	public int calculateZone(int x, int y) {
 		String items[] = cont.getItems();
 		double distanceToCenter = Math.sqrt((p.x - x) * (p.x - x) + (p.y - y) * (p.y - y));
@@ -116,19 +105,19 @@ public class MarkingMenu implements MouseInputListener {
 		((Paint) this.parent).setTool(t);
 	}
 	
-	//Draw the marking menu based on the items of the menu we are in
+	// Draw the marking menu based on the items of the menu we are in
 	public void draw(Graphics g2) {
 		String items[] = cont.getItems();
 		if(items != null) {
 			
-			//We set a white background so we can read the menu
+			// We set a white background so we can read the menu
 			g2.setColor(Color.WHITE);
 			g2.fillOval(p.x - radius, p.y - radius, radius * 2, radius * 2);
 			
 			Graphics2D g2d = (Graphics2D) g2;
 			g2d.setStroke(new BasicStroke(2));
 
-			//We draw each item 
+			// We draw each item
 			for (int i = 1; i <= items.length; i++) {
 				double angle = Math.toRadians((360 / items.length) * i);
 				double angleText = angle + (Math.toRadians(360 / items.length)/2);

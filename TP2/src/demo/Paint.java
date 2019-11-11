@@ -1,13 +1,7 @@
 package demo;
-//////////////////////////////////////////////////////////////////////////////
-// file    : Paint.java
-// content : basic painting app
-//////////////////////////////////////////////////////////////////////////////
 
-/* imports *****************************************************************/
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +18,6 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Vector;
-
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -36,9 +29,10 @@ import javax.swing.event.MouseInputListener;
 
 import markingMenu.MarkingMenu;
 
-/* paint *******************************************************************/
 
 public class Paint extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 
 	class Tool extends AbstractAction implements MouseInputListener {
 		
@@ -139,23 +133,22 @@ public class Paint extends JFrame {
 		}
 	} };
 	
-	private static final long serialVersionUID = 1L;
 	Vector<Shape> shapes = new Vector<Shape>();
 	Color current_color = Color.BLUE;
 	Vector<Color> shapes_colors = new Vector<Color>();
 	
-	//We create our Marking menu
+	// We create our Marking menu
 	private MarkingMenu markingMenu = new MarkingMenu(this);
 
 	Tool tool;
 	JPanel panel;
 	
-	//We set the Color based on the result of the marking menu
+	// We set the Color based on the result of the marking menu
 	public void setColor(Color c) {
 		this.current_color = c;
 	}
 	
-	//We set the tool based on the result of the marking menu
+	// We set the tool based on the result of the marking menu
 	public void setTool(int t) {
 		panel.removeMouseListener(tool);
 		panel.removeMouseMotionListener(tool);
@@ -219,13 +212,13 @@ public class Paint extends JFrame {
 					ind_color++;
 				}
 				
-				//Don't forget to draw the marking menu !
+				// Don't forget to draw the marking menu !
 				markingMenu.draw(g2);
 				
 			}
 		});
 		
-		//Don't forget to add the markingMenu as a listener so we can interact with it
+		// Don't forget to add the markingMenu as a listener so we can interact with it
 		panel.addMouseListener(markingMenu);
 		panel.addMouseMotionListener(markingMenu);
 
