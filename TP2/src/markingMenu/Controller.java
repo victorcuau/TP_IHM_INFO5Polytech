@@ -15,26 +15,26 @@ public class Controller {
 	private MarkingMenu vue;
 	
 	//First menu
-	String itemsBaseMenu[] = { 
+	String itemsBaseMenu[] = {
 			"Colors",
-			"Tools"};
+			"Tools" };
 	
 	//Color menu
 	String itemsColorMenu[] = {
-			"<-- Back", 
-			"Yellow", 
-			"Red", 
-			"Blue", 
-			"Green", 
+			"<-- Back",
+			"Yellow",
+			"Red",
+			"Blue",
+			"Green",
 			"Black" };
 	
 	//tool menu
 		String itemsToolsMenu[] = {
 			"Pencil",
 			"Line",
-			"Rectangle", 
+			"Rectangle",
 			"<-- Back",
-			"TODO", 
+			"Circle",
 			"Ellipse" };
 	
 	

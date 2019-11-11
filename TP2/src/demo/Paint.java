@@ -131,6 +131,20 @@ public class Paint extends JFrame {
 				panel.repaint();
 			}
 		}
+	}, new Tool("Circle") {
+		public void mouseDragged(MouseEvent e) {
+			if (SwingUtilities.isLeftMouseButton(e)) {
+				Ellipse2D.Double circle = (Ellipse2D.Double) shape;
+				if (circle == null) {
+					circle = new Ellipse2D.Double(o.getX(), o.getY(), 0, 0);
+					shapes.add(shape = circle);
+					shapes_colors.add(current_color);
+				}
+				int diameter = (int) abs(e.getX() - o.getX());
+				circle.setFrame(min(e.getX(), o.getX()), min(e.getY(), o.getY()), diameter, diameter);
+				panel.repaint();
+			}
+		}
 	} };
 	
 	Vector<Shape> shapes = new Vector<Shape>();
