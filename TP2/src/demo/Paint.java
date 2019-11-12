@@ -180,6 +180,8 @@ public class Paint extends JFrame {
 		panel.addMouseMotionListener(tool);
 	}
 
+	
+	//défini la fenêtre
 	public Paint(String title) {
 		super(title);
 		setTitle("Paint - Marking Menu");
