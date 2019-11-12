@@ -168,7 +168,7 @@ public class Paint extends JFrame {
 		panel.removeMouseMotionListener(tool);
 		switch(t) {
 		case 1:
-			tool = tools[0];
+			tool = tools[4];
 			break;
 		case 3:
 			tool = tools[2];
