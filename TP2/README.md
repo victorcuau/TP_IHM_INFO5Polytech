@@ -11,7 +11,7 @@
 **Fonctionnement du marking menu :**
 Une fois le programme lancé (en executant le fichier main.java), il suffit de rester appuyé sur le clic droit de la souris pour lancer le menu circulaire. On peut ensuite choisir entre les couleurs et les outils, puis en sortant la souris du menu on ouvre le menu suivant approprié. Ensuite, on peut donc choisir sa couleur/son outil. 
 
-Note : Il est possible de sortir du menu, c'est alors la dernière couleur/outil qui sera prit en compte. Il est aussi possible de rerentrer la souris dans le menu et donc continuer sa selection.
+Note : Il est possible de sortir du menu, c'est alors la dernière couleur/outil qui sera prise en compte. Il est aussi possible de rerentrer la souris dans le menu et donc continuer sa selection.
 
 De plus, il est possible de revenir dans le menu précédent en passant la souris dans l'item "Retour".
 
