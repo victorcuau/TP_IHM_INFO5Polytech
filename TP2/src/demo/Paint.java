@@ -156,6 +156,7 @@ public class Paint extends JFrame {
 
 	Tool tool;
 	JPanel panel;
+	boolean expertMode = false;
 	
 	// We set the Color based on the result of the marking menu
 	public void setColor(Color c) {
@@ -209,6 +210,19 @@ public class Paint extends JFrame {
 					}
 				});
 				add(colorBox);
+				
+				JButton expertModeButton = new JButton("Expert Mode");
+				expertModeButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(expertMode) {
+							expertMode = false;
+						}else {
+							expertMode = true;
+						}
+					}
+				});
+				add(expertModeButton);
+				
 			}
 		}, BorderLayout.NORTH);
 		add(panel = new JPanel() {
@@ -229,8 +243,9 @@ public class Paint extends JFrame {
 				}
 				
 				// Don't forget to draw the marking menu !
-				markingMenu.draw(g2);
-				
+				if(!expertMode) {
+					markingMenu.draw(g2);
+				}				
 			}
 		});
 		
