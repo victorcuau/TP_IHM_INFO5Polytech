@@ -138,25 +138,27 @@ public class Controller {
 				vue.setPoint(e);
 				actualMenu = 1;
 			} else {
-				lastZone = zone;
-				switch(zone) {
-				case 1:
-					color = Color.GREEN;
-					break;
-				case 2:
-					color = Color.BLUE;
-					break;
-				case 3:
-					color = Color.RED;
-					break;
-				case 4:
-					color = Color.YELLOW;
-					break;
-				case 5:
-					break;
-				case 6:
-					color = Color.BLACK;
-					break;
+				if(zone != 0) {
+					lastZone = zone;
+					switch(zone) {
+					case 1:
+						color = Color.GREEN;
+						break;
+					case 2:
+						color = Color.BLUE;
+						break;
+					case 3:
+						color = Color.RED;
+						break;
+					case 4:
+						color = Color.YELLOW;
+						break;
+					case 5:
+						break;
+					case 6:
+						color = Color.BLACK;
+						break;
+					}
 				}
 			}
 			break;
@@ -168,8 +170,10 @@ public class Controller {
 				vue.setPoint(e);
 				actualMenu = 1;
 			} else {
-				lastZone = zone;
-				tool = zone;
+				if(zone != 0) {
+					lastZone = zone;
+					tool = zone;
+				}
 			}
 			break;				
 		}
