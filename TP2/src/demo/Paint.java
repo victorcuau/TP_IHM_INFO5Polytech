@@ -202,6 +202,8 @@ public class Paint extends JFrame {
 				for (AbstractAction tool : tools) {
 					add(tool);
 				}
+				
+				//Colorbox
 				JButton colorBox = new JButton("Color");
 				colorBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -213,6 +215,7 @@ public class Paint extends JFrame {
 				});
 				add(colorBox);
 				
+				//expertMode
 				JCheckBox expertModeButton = new JCheckBox("Expert Mode");
 				expertModeButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
