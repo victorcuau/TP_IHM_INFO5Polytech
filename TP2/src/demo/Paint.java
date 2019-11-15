@@ -20,6 +20,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Vector;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -211,7 +212,7 @@ public class Paint extends JFrame {
 				});
 				add(colorBox);
 				
-				JButton expertModeButton = new JButton("Expert Mode");
+				JCheckBox expertModeButton = new JCheckBox("Expert Mode");
 				expertModeButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(expertMode) {
