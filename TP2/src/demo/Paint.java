@@ -141,7 +141,8 @@ public class Paint extends JFrame {
 					shapes.add(shape = circle);
 					shapes_colors.add(current_color);
 				}
-				int diameter = (int) abs(e.getX() - o.getX());
+				
+				int diameter = Math.max((int)abs(e.getX() - o.getX()), (int)abs(e.getY() - o.getY()));
 				circle.setFrame(min(e.getX(), o.getX()), min(e.getY(), o.getY()), diameter, diameter);
 				panel.repaint();
 			}
