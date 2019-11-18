@@ -24,7 +24,18 @@ function multiTouch(element: HTMLElement) : void {
                 eventName: ["touchstart"],
                 useCapture: false,
                 action: (evt : TouchEvent) : boolean => {
-                    // To be completed
+                    // Get the id of the current selected element
+                    pointerId_1 = evt.changedTouches.item(0).identifier;
+
+                    // Get the current point of the finger
+                    let finger1 = getRelevantDataFromEvent(evt);
+                    Pt1_coord_parent = transfo.getPoint(finger1.clientX,finger1.clientY);
+
+                    originalMatrix = transfo.getMatrixFromElement(element);
+
+                    // Get the first contact point of the finger
+                    Pt1_coord_element = Pt1_coord_parent.matrixTransform(originalMatrix.inverse());
+
                     return true;
                 }
             },
@@ -35,7 +46,13 @@ function multiTouch(element: HTMLElement) : void {
                 action: (evt : TouchEvent) : boolean => {
                     evt.preventDefault();
                     evt.stopPropagation();
-                    // To be completed
+
+                    // Get the current point of the finger
+                    let finger1 = getRelevantDataFromEvent(evt);
+                    Pt1_coord_parent = transfo.getPoint(finger1.clientX, finger1.clientY);
+
+                    // Execute the translation
+                    transfo.drag(element, originalMatrix, Pt1_coord_element, Pt1_coord_parent);
                     return true;
                 }
             },
