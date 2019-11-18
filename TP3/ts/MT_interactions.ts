@@ -24,6 +24,7 @@ function multiTouch(element: HTMLElement) : void {
                 eventName: ["touchstart"],
                 useCapture: false,
                 action: (evt : TouchEvent) : boolean => {
+
                     // Get the id of the current selected element
                     pointerId_1 = evt.changedTouches.item(0).identifier;
 
@@ -62,7 +63,7 @@ function multiTouch(element: HTMLElement) : void {
                 eventName: ["touchend"],
                 useCapture: true,
                 action: (evt : TouchEvent) : boolean => {
-                    // To be completed
+                    pointerId_1 = null; // Reset the current selected element, as none is selected
                     return true;
                 }
             },
@@ -71,7 +72,16 @@ function multiTouch(element: HTMLElement) : void {
                 eventName: ["touchstart"],
                 useCapture: false,
                 action: (evt : TouchEvent) : boolean => {
-                    // To be completed
+                    // Get the id of the current selected element for the second finger
+                    pointerId_2 = evt.changedTouches.item(0).identifier;
+
+                    // Get the current point of the second finger
+                    let finger2 = getRelevantDataFromEvent(evt);
+                    Pt2_coord_parent = transfo.getPoint(finger2.clientX,finger2.clientY);
+
+                    // Get the first contact point of the second finger
+                    Pt2_coord_element = Pt1_coord_parent.matrixTransform(originalMatrix.inverse());
+
                     return true;
                 }
             },
