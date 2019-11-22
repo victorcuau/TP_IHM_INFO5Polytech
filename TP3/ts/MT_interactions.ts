@@ -72,6 +72,7 @@ function multiTouch(element: HTMLElement) : void {
                 eventName: ["touchstart"],
                 useCapture: false,
                 action: (evt : TouchEvent) : boolean => {
+
                     // Get the id of the current selected element for the second finger
                     pointerId_2 = evt.changedTouches.item(0).identifier;
 
@@ -80,7 +81,7 @@ function multiTouch(element: HTMLElement) : void {
                     Pt2_coord_parent = transfo.getPoint(finger2.clientX,finger2.clientY);
 
                     // Get the first contact point of the second finger
-                    Pt2_coord_element = Pt1_coord_parent.matrixTransform(originalMatrix.inverse());
+                    Pt2_coord_element = Pt2_coord_parent.matrixTransform(originalMatrix.inverse());
 
                     return true;
                 }
@@ -94,8 +95,8 @@ function multiTouch(element: HTMLElement) : void {
                     evt.stopPropagation();
 
                     for (let i = 0; i < evt.changedTouches.length; i++) {
-                        let touch =  evt.changedTouches.item(1);
-                        if (touch.identifier === pointerId_2) {
+                        let touch =  evt.changedTouches.item(i);
+                        if (touch.identifier === pointerId_1) {
                             Pt1_coord_parent = transfo.getPoint(touch.clientX, touch.clientY);
                         } else {
                             Pt2_coord_parent = transfo.getPoint(touch.clientX, touch.clientY);
