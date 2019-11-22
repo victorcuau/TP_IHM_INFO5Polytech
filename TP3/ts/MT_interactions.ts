@@ -92,7 +92,18 @@ function multiTouch(element: HTMLElement) : void {
                 action: (evt : TouchEvent) : boolean => {
                     evt.preventDefault();
                     evt.stopPropagation();
-                    // To be completed
+
+                    for (let i = 0; i < evt.changedTouches.length; i++) {
+                        let touch =  evt.changedTouches.item(1);
+                        if (touch.identifier === pointerId_2) {
+                            Pt1_coord_parent = transfo.getPoint(touch.clientX, touch.clientY);
+                        } else {
+                            Pt2_coord_parent = transfo.getPoint(touch.clientX, touch.clientY);
+                        }
+                    }
+
+                    transfo.rotozoom(element, originalMatrix, Pt1_coord_element, Pt1_coord_parent,
+                                    Pt2_coord_element, Pt2_coord_parent);
                     return true;
                 }
             },
@@ -103,7 +114,22 @@ function multiTouch(element: HTMLElement) : void {
                 useCapture: true,
                 action: (evt : TouchEvent) : boolean => {
                     const touch = getRelevantDataFromEvent(evt);
-                    // To be completed
+
+                    //if finger1 is not there anymore, finger2 becomes finger1
+                    if(touch.identifier === pointerId_1) {
+                        pointerId_1 = pointerId_2;
+                        Pt1_coord_element = Pt2_coord_element;
+                        Pt1_coord_parent = Pt2_coord_parent;
+                    }
+
+                    //finger2 must then be reinitialized
+                    pointerId_2 = null;
+                    Pt2_coord_element = null;
+                    Pt2_coord_parent = null;
+
+                    //matrix must also be reinitialized
+                    originalMatrix = transfo.getMatrixFromElement(element);
+
                     return true;
                 }
             }
