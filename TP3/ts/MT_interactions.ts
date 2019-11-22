@@ -94,6 +94,7 @@ function multiTouch(element: HTMLElement) : void {
                     evt.preventDefault();
                     evt.stopPropagation();
 
+                    // Loop on the events
                     for (let i = 0; i < evt.changedTouches.length; i++) {
                         let touch =  evt.changedTouches.item(i);
                         if (touch.identifier === pointerId_1) {
@@ -103,8 +104,8 @@ function multiTouch(element: HTMLElement) : void {
                         }
                     }
 
-                    transfo.rotozoom(element, originalMatrix, Pt1_coord_element, Pt1_coord_parent,
-                                    Pt2_coord_element, Pt2_coord_parent);
+                    // Execute the rotozoom
+                    transfo.rotozoom(element, originalMatrix, Pt1_coord_element, Pt1_coord_parent, Pt2_coord_element, Pt2_coord_parent);
                     return true;
                 }
             },
@@ -116,19 +117,19 @@ function multiTouch(element: HTMLElement) : void {
                 action: (evt : TouchEvent) : boolean => {
                     const touch = getRelevantDataFromEvent(evt);
 
-                    //if finger1 is not there anymore, finger2 becomes finger1
+                    // If the first finger is not there anymore, finger2 becomes finger1
                     if(touch.identifier === pointerId_1) {
                         pointerId_1 = pointerId_2;
                         Pt1_coord_element = Pt2_coord_element;
                         Pt1_coord_parent = Pt2_coord_parent;
                     }
 
-                    //finger2 must then be reinitialized
+                    // finger2 must then be reinitialized
                     pointerId_2 = null;
                     Pt2_coord_element = null;
                     Pt2_coord_parent = null;
 
-                    //matrix must also be reinitialized
+                    // The matrix must also be reinitialized
                     originalMatrix = transfo.getMatrixFromElement(element);
 
                     return true;
